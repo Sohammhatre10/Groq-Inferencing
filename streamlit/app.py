@@ -5,10 +5,11 @@ from langchain_core.output_parsers import StrOutputParser
 parser = StrOutputParser()
 from langchain_groq import ChatGroq
 import os
-api_key = os.getenv("GROQ_API_KEY")
-model = ChatGroq(model="llama3-8b-8192", api_key=api_key)
+
 st.title('ReciteAI')
 st.header('Enter text to complete:')
+api_key = st.text_input('Type your Groq API Key')
+model = ChatGroq(model="llama3-8b-8192", api_key=api_key)
 
 user_input = st.text_area('Write the description of story', height=200)
 max_length = st.slider("Select max story length:", min_value=50, max_value=200, value=100, step=10)
